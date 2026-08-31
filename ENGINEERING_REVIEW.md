@@ -89,7 +89,7 @@ The sequence above was run end to end on a clean clone of this repository:
 | step | result |
 |---|---|
 | `git clone` | 40 files, 0.42 MB, no `data/`, no `models/` |
-| `python -m pytest tests -q` | **81 passed** — before any data or model exists |
+| `python -m pytest tests -q` | **83 passed** — before any data or model exists |
 | `python -m src.main --benchmark 40` | ran on webcam at **21.2 FPS**, generic mode |
 | `python -m tools.generate_synthetic_data` | 94 clips into `data/raw_sessions` |
 | `python -m src.train` | model saved, 8.30 ms per classification window |
@@ -144,7 +144,7 @@ Please do not take the numbers in §4 on trust. These four commands regenerate a
 of them from scratch:
 
 ```bash
-python -m pytest tests -q               # 81 tests, ~17 s, no hardware needed
+python -m pytest tests -q               # 83 tests, ~20 s, no hardware needed
 python -m src.evaluate                  # rebuilds docs/metrics_report.md
 python -m src.main --benchmark 300      # sustained FPS on your hardware
 python -m tools.check_camera            # your camera, your lighting
@@ -216,20 +216,41 @@ Numbered so they can be referenced in review comments.
 
 ### Correctness
 
-**C-1 — Residual rep-counting regression. Open.**
-A bug was fixed where holding the hands part-way up and jiggling scored
-repetitions: the counter checked only whether the joint angle got *deep*, never
-whether it had *travelled*. On the real recording it credited a rep for 20° of
-elbow movement, because 72° looks deep against a configured 150° start. The fix
-requires a rep that falls short of the working position to also travel a minimum
-distance from the resting position.
+**C-1 — False repetitions from a partial movement. Resolved.**
+Holding the hands part-way up and jiggling scored repetitions. The counter asked
+only whether the joint angle got *deep*, never whether it had *travelled*: on a
+real recording it credited a rep for 20° of elbow movement, because 72° looks deep
+against a configured 150° start.
 
-The fix is correct on real data and has 6 regression tests. **However**, synthetic
-end-to-end exact-match dropped from 82.1% to 72.6% (MAE 0.19 → 0.29). Within ±1
-rep is unchanged at 98.8%, so it is losing one rep on some clips — we believe the
-first rep of a set, where the classifier needs a window before it names the
-exercise and the counter therefore starts mid-movement with no rest baseline to
-measure against. **Not yet resolved.** See `src/rep_counter.py::_complete`.
+The fix has two halves, and the second only became necessary because the first
+introduced a regression — worth reading together, because either alone is wrong:
+
+1. A rep that falls short of `far_threshold` must also travel `count_ratio` of the
+   configured span **measured from the resting position**, not from the threshold
+   crossing (`src/rep_counter.py::_complete`).
+2. A counter created part-way through a session inherits the recent resting
+   history it never saw (`RepCounter.observe_rest`, seeded from a short rolling
+   buffer in `MonitorPipeline.counter_for`).
+
+Step 1 alone cost the first repetition of every *shallow* set: end-to-end the
+classifier needs a window of frames before it names the exercise, so the counter is
+built mid-descent, and a shallow rep cannot fall back on having reached
+`far_threshold`. Diagnosis showed the false positive and the lost rep were
+indistinguishable from the cycle's own data — travel was *smaller* on the
+legitimate one (3.4° vs 20.3°) — so the discriminator had to come from outside the
+cycle. Step 2 supplies it: seeded rest history is admitted only from samples not
+already past the arming threshold, so a genuine standing position seeds it and a
+half-flexed hold does not.
+
+Both properties now hold at once, verified:
+
+| | before | step 1 only | now |
+|---|---|---|---|
+| False rep on the real recording | counted (19) | rejected (18) | rejected (18) |
+| End-to-end rep MAE / exact | 0.19 / 82.1% | 0.29 / 72.6% | **0.19 / 82.1%** |
+| Forced-exercise rep MAE / exact | 0.05 / 96.4% | 0.05 / 96.4% | 0.05 / 96.4% |
+
+Covered by 8 regression tests, two of which fail if either half is reverted.
 
 **C-2 — Anatomically impossible joint angles at close range.**
 At the current camera distance the elbow reads 0.6–6° at full curl. A human elbow
@@ -277,7 +298,7 @@ cannot run the test suite. Recommended fix: pin what is actually used, and split
 runtime / training / dev into separate requirement sets or a `pyproject.toml`
 with extras.
 
-**S-5 — No test coverage measurement.** 81 tests pass, but nothing reports what
+**S-5 — No test coverage measurement.** 83 tests pass, but nothing reports what
 fraction of `src/` they exercise.
 
 ---
@@ -372,7 +393,7 @@ src/matcher.py           Training-free recognition from configs
 src/mistake_detector.py  Per-frame, per-rep and generic anomaly checks
 src/overlay.py           Rendering only; no analysis. See R-2
 src/main.py              The application loop. See R-1
-tests/test_pipeline.py   81 tests; the counting bug cases are named for it
+tests/test_pipeline.py   83 tests; the counting bug cases are named for it
 docs/architecture.md     Design decisions, and the measurements behind them
 docs/embedded_deployment_notes.md   Port planning; explicitly unverified
 docs/adding_a_new_exercise.md       Worked example + calibration recipe

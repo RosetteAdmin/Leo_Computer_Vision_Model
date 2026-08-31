@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-26T14:03:09",
+  "generated": "2026-08-31T09:55:29",
   "synthetic_data": true,
   "classifier": {
     "trained_at": "2026-08-25T00:57:34",
@@ -811,7 +811,7 @@
         "exercise": "bicep_curl",
         "fault": "asymmetric",
         "expected": 8,
-        "counted": 7,
+        "counted": 8,
         "label_purity": 0.8740554156171285
       },
       {
@@ -947,7 +947,7 @@
         "exercise": "bicep_curl",
         "fault": "swing",
         "expected": 8,
-        "counted": 7,
+        "counted": 8,
         "label_purity": 0.8715846994535519
       },
       {
@@ -1027,7 +1027,7 @@
         "exercise": "lunge",
         "fault": "shallow",
         "expected": 8,
-        "counted": 7,
+        "counted": 8,
         "label_purity": 0.9074380165289256
       },
       {
@@ -1035,7 +1035,7 @@
         "exercise": "lunge",
         "fault": "shallow",
         "expected": 8,
-        "counted": 7,
+        "counted": 8,
         "label_purity": 0.9
       },
       {
@@ -1043,7 +1043,7 @@
         "exercise": "lunge",
         "fault": "shallow",
         "expected": 8,
-        "counted": 7,
+        "counted": 8,
         "label_purity": 0.9074380165289256
       },
       {
@@ -1435,7 +1435,7 @@
         "exercise": "squat",
         "fault": "shallow",
         "expected": 8,
-        "counted": 7,
+        "counted": 8,
         "label_purity": 0.9038112522686026
       },
       {
@@ -1443,7 +1443,7 @@
         "exercise": "squat",
         "fault": "shallow",
         "expected": 8,
-        "counted": 7,
+        "counted": 8,
         "label_purity": 0.8954635108481263
       },
       {
@@ -1451,7 +1451,7 @@
         "exercise": "squat",
         "fault": "shallow",
         "expected": 8,
-        "counted": 7,
+        "counted": 8,
         "label_purity": 0.896484375
       },
       {
@@ -1613,10 +1613,10 @@
   },
   "latency": {
     "frames": 4000.0,
-    "mean_ms": 5.270788300000105,
-    "median_ms": 3.0790499999966414,
-    "p95_ms": 10.96697999986418,
-    "max_ms": 26.622599999882368
+    "mean_ms": 7.597672825000245,
+    "median_ms": 4.908949999844481,
+    "p95_ms": 24.37556999982462,
+    "max_ms": 39.018400000259135
   },
   "mediapipe": null
 }

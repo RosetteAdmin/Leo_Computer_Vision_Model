@@ -277,10 +277,10 @@ def test_rep_counter_direction_sign():
 
 
 # --- rep counter --------------------------------------------------------------
-def _drive(counter, values, fps=30.0):
+def _drive(counter, values, fps=30.0, t0=0.0):
     reps = []
     for i, v in enumerate(values):
-        r = counter.update({counter.primary_metric: float(v)}, i, i / fps)
+        r = counter.update({counter.primary_metric: float(v)}, i, t0 + i / fps)
         if r is not None:
             reps.append(r)
     return reps
@@ -420,6 +420,41 @@ def test_a_rep_reaching_the_working_position_is_trusted_on_depth_alone():
     c = RepCounter(_curl_cfg(), "bicep_curl")
     seq = _ramp(120.0, 15.0, 0.7) + _ramp(15.0, 170.0, 0.9)   # starts mid-descent
     assert len(_drive(c, seq, fps=14.0)) == 1
+
+
+def test_seeded_rest_history_saves_a_shallow_first_rep():
+    """A counter created mid-movement must inherit the resting position.
+
+    End to end the classifier needs a window of frames before it names the
+    exercise, so the counter is built part-way into the first descent. A *shallow*
+    rep cannot fall back on having reached `far_threshold`, so with no rest history
+    it was rejected - measurably, the first rep of every shallow set.
+    """
+    cfg = _curl_cfg()
+    seq = _ramp(120.0, 100.0, 0.5) + _ramp(100.0, 145.0, 0.6)   # shallow, starts late
+
+    blind = RepCounter(cfg, "bicep_curl")
+    assert len(_drive(blind, seq, fps=14.0)) == 0, "no history: nothing to measure"
+
+    seeded = RepCounter(cfg, "bicep_curl")
+    for i in range(9):                       # 0.6 s of standing with arms down
+        seeded.observe_rest(i / 14.0, 175.0)
+    assert len(_drive(seeded, seq, fps=14.0, t0=0.65)) == 1
+
+
+def test_seeded_rest_history_ignores_samples_already_into_the_movement():
+    """Seeding must not turn a half-flexed hold into a "resting" position.
+
+    Otherwise the fix for the reported false count would be undone by the fix for
+    the missing first rep: holding the hands up would once again look like a rep
+    starting from rest.
+    """
+    cfg = _curl_cfg()
+    c = RepCounter(cfg, "bicep_curl")
+    for i in range(9):                       # held half way up, not resting
+        c.observe_rest(i / 14.0, 92.0)
+    seq = _ramp(92.0, 72.0, 0.5) + _ramp(72.0, 145.0, 0.6)
+    assert len(_drive(c, seq, fps=14.0, t0=0.65)) == 0
 
 
 def test_tiny_twitches_below_count_ratio_are_ignored():

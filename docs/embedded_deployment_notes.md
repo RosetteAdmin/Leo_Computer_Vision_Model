@@ -148,7 +148,7 @@ Ordered by return on effort:
 
 Do not trust a port until all of these pass on the target:
 
-- [ ] `python -m pytest tests -q` — 56 tests, no hardware needed.
+- [ ] `python -m pytest tests -q` — 83 tests, no hardware needed.
 - [ ] `python -m src.evaluate` — regenerate the metrics report **on the device**,
       with the device's pose model. Landmark noise differs, so thresholds may need
       retuning.

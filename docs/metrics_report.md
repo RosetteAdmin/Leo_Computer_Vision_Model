@@ -1,6 +1,6 @@
 # Metrics report
 
-Generated: 2026-08-26 14:03:09  
+Generated: 2026-08-31 09:55:29  
 Machine: Intel64 Family 6 Model 151 Stepping 2, GenuineIntel / Windows 10 / Python 3.10.11
 
 > ## Read this first
@@ -91,26 +91,26 @@ Worst clips:
 ### End-to-end (classifier chooses the exercise)
 
 * clips: 84
-* **MAE 0.29 reps**, exact 72.6%, within +/-1 98.8%
+* **MAE 0.19 reps**, exact 82.1%, within +/-1 98.8%
 
 |exercise|clips|expected|counted|MAE|within +/-1|
 |---|---|---|---|---|---|
-|bicep_curl|18|144|130|0.78|100%|
-|lunge|12|96|93|0.25|100%|
+|bicep_curl|18|144|132|0.67|100%|
+|lunge|12|96|96|0.00|100%|
 |pushup|18|144|142|0.11|94%|
 |shoulder_press|18|144|142|0.11|100%|
-|squat|18|144|141|0.17|100%|
+|squat|18|144|144|0.00|100%|
 
 Worst clips:
 
 |clip|fault|expected|counted|
 |---|---|---|---|
 |pushup_fast_00.npz|fast|8|6|
-|bicep_curl_asymmetric_00.npz|asymmetric|8|7|
 |bicep_curl_asymmetric_01.npz|asymmetric|8|7|
 |bicep_curl_asymmetric_02.npz|asymmetric|8|7|
 |bicep_curl_fast_00.npz|fast|8|7|
 |bicep_curl_fast_01.npz|fast|8|7|
+|bicep_curl_fast_02.npz|fast|8|7|
 
 ## 3. Mistake detection
 
@@ -139,7 +139,7 @@ docstring for why other faults are excluded from the negatives).
 ### Analysis pipeline (angle engine + features + classifier + counter + checks)
 
 * frames timed: 4000
-* mean **5.27 ms**, median 3.08 ms, p95 10.97 ms, max 26.62 ms
+* mean **7.60 ms**, median 4.91 ms, p95 24.38 ms, max 39.02 ms
 
 ### MediaPipe Pose (the dominant cost)
 

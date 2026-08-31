@@ -136,6 +136,30 @@ class RepCounter:
         self._rest_hist.clear()
         self._reset_cycle()
 
+    def observe_rest(self, timestamp: float, value: float) -> None:
+        """Record one idle sample, exactly as :meth:`update` does while in READY.
+
+        Lets a counter that was created part-way through a session inherit the
+        resting history it would have gathered had it existed from the first frame.
+        Without this, a counter created mid-movement has nothing to measure travel
+        against and rejects a genuine repetition — measurably, the first rep of a
+        set, because the classifier needs a window before it names the exercise.
+
+        Samples already past the arming threshold are ignored: those describe the
+        movement, not the rest before it. That distinction is what keeps a
+        half-flexed hold (the bug in :meth:`_complete`) from being mistaken for a
+        resting position just because it preceded a cycle.
+        """
+        if value != value:                      # NaN: nothing was measurable
+            return
+        u = self._u(value)
+        if u > self._u(self.config.near_threshold) + abs(self.config.hysteresis):
+            return
+        self._rest_hist.append((timestamp, u))
+        while (self._rest_hist
+               and timestamp - self._rest_hist[0][0] > self.REST_WINDOW_SECONDS):
+            self._rest_hist.popleft()
+
     def _rest_estimate(self, fallback: float) -> float:
         """Where the body was before this rep began: the least-worked idle sample.
 

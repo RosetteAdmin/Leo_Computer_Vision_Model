@@ -115,6 +115,10 @@ class MonitorPipeline:
         self.detector = MistakeDetector()
         self.generic_counter = GenericRepCounter()
         self._counters: dict[str, RepCounter] = {}
+        # Short rolling window of recent smoothed metrics, used to seed a rep
+        # counter's resting history when it is created mid-session. Holds
+        # references to the smoother's per-frame dicts, so it copies nothing.
+        self._recent: deque[tuple[float, Mapping[str, float]]] = deque(maxlen=120)
         self.current_exercise: Optional[str] = forced_exercise
         self._fps_times: deque[float] = deque(maxlen=30)
         self.frames_seen = 0
@@ -126,7 +130,16 @@ class MonitorPipeline:
             cfg = self.library[name]
             if cfg.rep_counter is None:
                 raise ValueError(f"exercise '{name}' has no rep_counter section")
-            self._counters[name] = RepCounter(cfg.rep_counter, exercise=name)
+            counter = RepCounter(cfg.rep_counter, exercise=name)
+            # Hand the new counter the recent past. It is created the moment the
+            # exercise is first recognised, which is typically part-way into the
+            # first repetition - the classifier needs a window of frames to decide.
+            # A counter starting blind has no resting position to measure the
+            # movement against and drops that first rep.
+            metric = cfg.rep_counter.primary_metric
+            for ts, metrics in self._recent:
+                counter.observe_rest(ts, metrics.get(metric, float("nan")))
+            self._counters[name] = counter
         return self._counters[name]
 
     def rep_totals(self) -> dict[str, int]:
@@ -144,6 +157,7 @@ class MonitorPipeline:
         self.generic_counter.reset()
         for c in self._counters.values():
             c.reset()
+        self._recent.clear()
         self.current_exercise = self.forced_exercise
 
     def _fps(self, timestamp: float) -> float:
@@ -183,6 +197,11 @@ class MonitorPipeline:
         self.frames_detected += 1
         metrics = self.smoother.update(raw_metrics, timestamp)
         fps = self._fps(timestamp)
+
+        self._recent.append((timestamp, metrics))
+        while (self._recent
+               and timestamp - self._recent[0][0] > RepCounter.REST_WINDOW_SECONDS):
+            self._recent.popleft()
 
         # --- 1. which exercise? ---
         label: Optional[str] = self.forced_exercise
