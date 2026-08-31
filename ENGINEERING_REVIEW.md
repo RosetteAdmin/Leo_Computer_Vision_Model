@@ -54,13 +54,49 @@ pip install -r requirements.txt
 # 3. Test dependency - NOT in requirements.txt, see issue S-4 in section 5
 pip install pytest
 
-# 4. Confirm the install, the camera and the model in one step
+# 4. REQUIRED after a fresh clone: build the training data and the classifier.
+#    data/ and models/ are deliberately not in the repository.
+#    Takes a couple of minutes; produces 94 clips and a ~5 MB model.
+python -m tools.generate_synthetic_data
+python -m src.train
+
+# 5. Confirm the install, the camera and the model in one step
 python -m tools.check_camera
 ```
 
 `check_camera` verifies dependencies, configs, the classifier, the camera, and
 then measures real capture rate and pose-detection quality for 90 frames. Start
 here; it catches most setup problems before they look like application bugs.
+
+### If you skip step 4
+
+The application still runs on your camera, but it prints:
+
+```
+[!] no classifier at models\exercise_classifier.pkl - running in generic mode.
+    Train one with:  python -m src.train
+```
+
+In that state joints are tracked and cycles are counted generically, and
+`src/matcher.py` still recognises the five shipped exercises from the configs
+alone — but the trained-model path is inactive, so nothing in §4's accuracy table
+applies. Run step 4 before evaluating recognition quality.
+
+### Verified fresh-clone walkthrough
+
+The sequence above was run end to end on a clean clone of this repository:
+
+| step | result |
+|---|---|
+| `git clone` | 40 files, 0.42 MB, no `data/`, no `models/` |
+| `python -m pytest tests -q` | **81 passed** — before any data or model exists |
+| `python -m src.main --benchmark 40` | ran on webcam at **21.2 FPS**, generic mode |
+| `python -m tools.generate_synthetic_data` | 94 clips into `data/raw_sessions` |
+| `python -m src.train` | model saved, 8.30 ms per classification window |
+| classifier load | 6 classes: bicep_curl, idle, lunge, pushup, shoulder_press, squat |
+
+So the camera path works immediately on a fresh clone; step 4 is what enables
+trained recognition.
 
 ### Running it
 

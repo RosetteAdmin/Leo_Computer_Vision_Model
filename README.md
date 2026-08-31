@@ -92,8 +92,18 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-Check your setup first — dependencies, configs, camera, frame rate and camera
-angle, all headless:
+**After a fresh clone, build the dataset and the classifier.** `data/` and
+`models/` are generated artefacts and are deliberately not in the repository, so
+these two commands are required, not optional — without them the app runs but
+falls back to generic mode with no trained recognition:
+
+```bash
+python -m tools.generate_synthetic_data          # ~94 clips, a couple of minutes
+python -m src.train                              # writes models/exercise_classifier.pkl
+```
+
+Check your setup — dependencies, configs, classifier, camera, frame rate and
+camera angle, all headless:
 
 ```bash
 python -m tools.check_camera
@@ -103,8 +113,6 @@ Try it without a camera (replays a recorded session through the full live
 pipeline, rendering the skeleton on a blank canvas):
 
 ```bash
-python -m tools.generate_synthetic_data          # build the dev dataset
-python -m src.train                              # ~5 s
 python -m src.main --replay data/test_faults/squat_shallow_00.npz
 ```
 
