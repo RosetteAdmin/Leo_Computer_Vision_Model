@@ -1,0 +1,74 @@
+name: shoulder_press
+display_name: Shoulder Press
+description: >
+  Standing overhead press. Note the rep signal here *increases* toward the
+  working position (shoulder abduction goes from ~40 deg racked to ~165 deg
+  overhead); the rep-counting state machine handles both directions from the
+  sign of far_threshold - near_threshold.
+
+tracked_metrics: [shoulder_mean, elbow_mean, wrist_height_mean, torso_lean]
+
+signature:
+  - metric: torso_lean
+    max: 40
+  - metric: wrist_height_mean  # hands finish above the shoulders
+    min: 0.35
+  - metric: elbow_mean         # racked with the elbow bent at the start. Without
+    max: 120                   # this, any straight-arm raise looks like a press.
+    over: trough               # "did the elbow bend at some point", not "on average"
+
+rep_counter:
+  primary_metric: shoulder_mean
+  near_threshold: 55        # racked at the shoulders
+  far_threshold: 145        # locked out overhead
+  hysteresis: 8
+  min_rep_seconds: 0.25     # SECONDS, not frames. Frame counts are not
+                          # portable: a webcam at 11 FPS in dim light turns
+                          # "8 frames" into 0.73 s and rejects real reps.
+  max_rep_seconds: 13.0    # abandon a rep that never came back up
+
+angle_checks:
+  - code: TORSO_SWING        # leaning back turns a press into an incline press
+    metric: torso_lean
+    phases: [any]
+    max: 20
+    min_frames: 5
+    severity: error
+    highlight: [left_shoulder, right_shoulder, left_hip, right_hip]
+
+  - code: INCOMPLETE_LOCKOUT
+    metric: elbow_mean
+    phases: [extreme]
+    min: 150
+    min_frames: 5
+    severity: warning
+    highlight: [left_elbow, right_elbow]
+
+  - code: NECK_MISALIGNED
+    metric: neck
+    phases: [any]
+    min: 125
+    min_frames: 8
+    severity: warning
+    highlight: [nose]
+
+rep_checks:
+  rom:
+    metric: shoulder_mean
+    target_extreme: 140
+    min_range: 80
+    code: PARTIAL_REP
+  tempo:
+    max_speed: 191          # abduction deg/s; bench: controlled 118-163, rushed 219-306
+    min_seconds: 0.25
+    max_seconds: 10.0
+    relative_max_speed_ratio: 1.9
+  symmetry:
+    pairs:
+      - [shoulder_l, shoulder_r]
+      - [elbow_l, elbow_r]
+    max_diff: 18
+  consistency:
+    metric: shoulder_mean
+    min_correlation: 0.85
+    min_reps: 3

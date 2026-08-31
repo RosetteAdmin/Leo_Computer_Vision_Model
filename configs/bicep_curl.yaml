@@ -1,0 +1,69 @@
+name: bicep_curl
+display_name: Bicep Curl
+description: >
+  Standing dumbbell curl. Rep signal is the mean elbow angle. The upper arm
+  should stay pinned to the torso (shoulder_mean low) and the torso should not
+  swing to generate momentum.
+
+tracked_metrics: [elbow_mean, shoulder_mean, torso_lean, wrist_mean, elbow_diff]
+
+signature:
+  - metric: torso_lean       # standing upright, unlike a push-up
+    max: 40
+  - metric: shoulder_mean    # upper arm stays down at the side, unlike a press
+    max: 60
+
+rep_counter:
+  primary_metric: elbow_mean
+  near_threshold: 150      # arms hanging extended
+  far_threshold: 70        # curled up
+  hysteresis: 8
+  min_rep_seconds: 0.25     # SECONDS, not frames. Frame counts are not
+                          # portable: a webcam at 11 FPS in dim light turns
+                          # "8 frames" into 0.73 s and rejects real reps.
+  max_rep_seconds: 12.0    # abandon a rep that never came back up
+
+angle_checks:
+  - code: SHOULDER_SWING    # upper arm swinging forward instead of staying still
+    metric: shoulder_mean
+    phases: [any]
+    max: 35
+    min_frames: 5
+    severity: warning
+    highlight: [left_shoulder, right_shoulder]
+
+  - code: TORSO_SWING       # using body english / leaning back
+    metric: torso_lean
+    phases: [any]
+    max: 22
+    min_frames: 5
+    severity: error
+    highlight: [left_shoulder, right_shoulder, left_hip, right_hip]
+
+  - code: WRIST_BENT
+    metric: wrist_mean
+    phases: [extreme]
+    min: 140
+    min_frames: 6
+    severity: warning
+    highlight: [left_wrist, right_wrist]
+
+rep_checks:
+  rom:
+    metric: elbow_mean
+    target_extreme: 62
+    min_range: 75
+    code: PARTIAL_REP
+  tempo:
+    max_speed: 273          # elbow deg/s; bench: controlled 178-216, rushed 330-403
+    min_seconds: 0.25
+    max_seconds: 8.0
+    relative_max_speed_ratio: 1.9
+  symmetry:
+    pairs:
+      - [elbow_l, elbow_r]
+    max_diff: 22
+  consistency:
+    metric: elbow_mean
+    min_correlation: 0.85
+    min_reps: 3

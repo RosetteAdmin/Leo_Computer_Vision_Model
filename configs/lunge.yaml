@@ -1,0 +1,74 @@
+name: lunge
+display_name: Lunge
+description: >
+  Forward/split lunge. Rep signal is the mean knee angle. Deliberately an
+  asymmetric movement, so left/right symmetry checking is switched off - the
+  per-side knee angles are expected to differ.
+
+tracked_metrics: [knee_mean, knee_l, knee_r, torso_lean, view_frontality]
+
+view:
+  - metric: view_frontality
+    max: 0.85
+
+signature:
+  - metric: torso_lean
+    max: 50
+  - metric: stance_width     # split stance is the giveaway vs a squat
+    min: 0.45
+
+rep_counter:
+  primary_metric: knee_mean
+  near_threshold: 155
+  far_threshold: 118       # both knees bending toward ~90 pulls the mean down
+  hysteresis: 7
+  min_rep_seconds: 0.27     # SECONDS, not frames. Frame counts are not
+                          # portable: a webcam at 11 FPS in dim light turns
+                          # "8 frames" into 0.73 s and rejects real reps.
+  max_rep_seconds: 15.0    # abandon a rep that never came back up
+
+angle_checks:
+  - code: EXCESSIVE_TORSO_LEAN
+    metric: torso_lean
+    phases: [moving_away, extreme, returning]
+    max: 32
+    min_frames: 5
+    severity: error
+    highlight: [left_shoulder, right_shoulder, left_hip, right_hip]
+
+  - code: KNEE_ALIGNMENT_POOR
+    metric: knee_ankle_ratio
+    phases: [moving_away, extreme, returning]
+    min: 0.72                # looser than the squat: a split stance legitimately
+                             # narrows the knee track relative to the feet
+    min_frames: 5
+    severity: error
+    highlight: [left_knee, right_knee]
+    gates:
+      - metric: view_frontality
+        min: 0.45
+
+  - code: NECK_MISALIGNED
+    metric: neck
+    phases: [any]
+    min: 125
+    min_frames: 8
+    severity: warning
+    highlight: [nose]
+
+rep_checks:
+  rom:
+    metric: knee_mean
+    target_extreme: 112
+    min_range: 40
+    code: INSUFFICIENT_DEPTH
+  tempo:
+    max_speed: 96           # knee deg/s; bench: controlled 47-76, rushed 116-170
+    min_seconds: 0.25
+    max_seconds: 12.0
+    relative_max_speed_ratio: 1.9
+  # symmetry intentionally omitted: a lunge is a unilateral movement.
+  consistency:
+    metric: knee_mean
+    min_correlation: 0.75    # alternating legs makes the curve less repeatable
+    min_reps: 4

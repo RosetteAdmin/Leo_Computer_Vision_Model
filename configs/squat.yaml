@@ -1,0 +1,96 @@
+name: squat
+display_name: Squat
+description: >
+  Bodyweight or loaded squat. Rep signal is the mean knee angle: ~175 deg standing,
+  <=100 deg at a parallel-or-lower bottom position.
+
+# Extra metrics to show in the live angle table for this exercise.
+tracked_metrics: [knee_mean, hip_mean, torso_lean, knee_ankle_ratio, view_frontality]
+
+# A single camera cannot measure sagittal knee/hip flexion from dead in front.
+# When the subject is too square to the camera the pipeline raises
+# SUBOPTIMAL_CAMERA_VIEW and suppresses depth/ROM verdicts instead of reporting
+# numbers it cannot support. ~45 degrees satisfies this AND the valgus gate below.
+view:
+  - metric: view_frontality
+    max: 0.85
+
+# Identifies this movement for the training-free ConfigMatcher. Several
+# exercises share a primary joint, so posture is what separates them.
+signature:
+  - metric: torso_lean       # upright-ish: not a push-up
+    max: 62
+  - metric: stance_width     # feet under the hips, not a split stance
+    max: 0.55
+
+rep_counter:
+  primary_metric: knee_mean
+  near_threshold: 158      # standing / "ready"
+  far_threshold: 110       # counted as having reached the working position
+  hysteresis: 7
+  min_rep_seconds: 0.27     # SECONDS, not frames. Frame counts are not
+                          # portable: a webcam at 11 FPS in dim light turns
+                          # "8 frames" into 0.73 s and rejects real reps.
+  max_rep_seconds: 15.0    # abandon a rep that never came back up
+
+# --- Section 7a: per-frame angle mistakes ---
+angle_checks:
+  - code: EXCESSIVE_TORSO_LEAN
+    metric: torso_lean
+    phases: [moving_away, extreme, returning]
+    max: 55
+    min_frames: 5
+    severity: error
+    highlight: [left_shoulder, right_shoulder, left_hip, right_hip]
+
+  - code: KNEE_ALIGNMENT_POOR      # knees caving toward the midline (valgus)
+    metric: knee_ankle_ratio       # knee track width / ankle track width
+    phases: [moving_away, extreme, returning]
+    min: 0.80                      # <0.80 means the knees have narrowed
+    min_frames: 5
+    severity: error
+    highlight: [left_knee, right_knee]
+    gates:
+      - metric: view_frontality    # a frontal-plane fault needs a frontal view
+        min: 0.45
+
+  - code: NECK_MISALIGNED
+    metric: neck
+    phases: [any]
+    min: 125
+    min_frames: 8
+    severity: warning
+    highlight: [nose]
+
+  - code: HIP_HINGE_TOO_EARLY      # hip closing far ahead of the knees
+    metric: hip_mean
+    phases: [moving_away]
+    min: 45
+    min_frames: 6
+    severity: warning
+    highlight: [left_hip, right_hip]
+
+# --- Section 7b: per-rep mistakes ---
+rep_checks:
+  rom:
+    metric: knee_mean
+    target_extreme: 100     # must reach at least this deep
+    min_range: 55           # total swing of the knee angle within the rep
+    code: INSUFFICIENT_DEPTH
+  tempo:
+    # Angular speed of the knee, deg/s. Measured on the synthetic bench:
+    # controlled reps 73-96, rushed reps 152-206. Threshold sits between them.
+    # RECALIBRATE THIS ON REAL FOOTAGE - see docs/adding_a_new_exercise.md.
+    max_speed: 124
+    min_seconds: 0.25
+    max_seconds: 12.0
+    relative_max_speed_ratio: 1.9
+  symmetry:
+    pairs:
+      - [knee_l, knee_r]
+      - [hip_l, hip_r]
+    max_diff: 16
+  consistency:
+    metric: knee_mean
+    min_correlation: 0.82
+    min_reps: 3

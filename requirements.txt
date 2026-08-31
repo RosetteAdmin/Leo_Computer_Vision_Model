@@ -1,0 +1,19 @@
+# Core runtime (all offline, CPU-only)
+mediapipe==0.10.14
+opencv-python==4.11.0.86
+numpy==1.26.4
+scipy==1.14.1
+PyYAML==6.0.2
+
+# Training / evaluation
+scikit-learn==1.5.1
+pandas==2.2.2
+joblib==1.4.2
+
+# Optional: only needed if you run `train.py --model-type xgboost`
+# xgboost==2.1.1
+
+# Optional: notebooks + tests
+# jupyterlab==4.2.5
+# matplotlib==3.9.2
+# pytest==8.3.3

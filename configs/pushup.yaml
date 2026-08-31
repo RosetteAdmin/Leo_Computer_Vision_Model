@@ -1,0 +1,82 @@
+name: pushup
+display_name: Push-up
+description: >
+  Standard push-up. Rep signal is the mean elbow angle. Body must stay in a
+  straight shoulder-hip-ankle line (body_align_mean near 180) throughout.
+
+tracked_metrics: [elbow_mean, body_align_mean, hip_drop, shoulder_mean, neck]
+
+signature:
+  - metric: torso_lean       # body roughly horizontal - the key push-up cue
+    min: 45
+  - metric: body_align_mean  # and held in a straight line
+    min: 130
+
+rep_counter:
+  primary_metric: elbow_mean
+  near_threshold: 155      # arms extended at the top
+  far_threshold: 105       # chest lowered
+  hysteresis: 7
+  min_rep_seconds: 0.27     # SECONDS, not frames. Frame counts are not
+                          # portable: a webcam at 11 FPS in dim light turns
+                          # "8 frames" into 0.73 s and rejects real reps.
+  max_rep_seconds: 13.0    # abandon a rep that never came back up
+
+angle_checks:
+  # `hip_drop` is signed and gravity-referenced (positive = hips below the
+  # shoulder-ankle line), so sag and pike are distinguishable. It is NaN for an
+  # upright body, which automatically disables both checks if the classifier
+  # mislabels a standing movement as a push-up.
+  - code: HIP_SAG
+    metric: hip_drop
+    phases: [any]
+    max: 0.10
+    min_frames: 6
+    severity: error
+    highlight: [left_hip, right_hip]
+
+  - code: HIP_PIKE
+    metric: hip_drop
+    phases: [any]
+    min: -0.13
+    min_frames: 6
+    severity: warning
+    highlight: [left_hip, right_hip]
+
+  - code: ELBOW_FLARE       # upper arms abducting away from the torso
+    metric: shoulder_mean
+    phases: [extreme]       # only meaningful at the bottom; the top is ~90 deg
+                            # by definition and would false-positive elsewhere
+    max: 70
+    min_frames: 4
+    severity: warning
+    highlight: [left_elbow, right_elbow]
+
+  - code: NECK_MISALIGNED
+    metric: neck
+    phases: [any]
+    min: 120
+    min_frames: 8
+    severity: warning
+    highlight: [nose]
+
+rep_checks:
+  rom:
+    metric: elbow_mean
+    target_extreme: 95
+    min_range: 55
+    code: PARTIAL_REP
+  tempo:
+    max_speed: 165          # elbow deg/s; bench: controlled 106-131, rushed 198-245
+    min_seconds: 0.25
+    max_seconds: 10.0
+    relative_max_speed_ratio: 1.9
+  symmetry:
+    pairs:
+      - [elbow_l, elbow_r]
+      - [shoulder_l, shoulder_r]
+    max_diff: 16
+  consistency:
+    metric: elbow_mean
+    min_correlation: 0.82
+    min_reps: 3

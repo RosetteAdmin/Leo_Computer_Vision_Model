@@ -1,0 +1,1622 @@
+{
+  "generated": "2026-08-26T14:03:09",
+  "synthetic_data": true,
+  "classifier": {
+    "trained_at": "2026-08-25T00:57:34",
+    "data_dir": "C:\\rosset\\exercise-monitor\\data\\raw_sessions",
+    "n_train_windows": 3367,
+    "n_test_windows": 1057,
+    "group_by": "clip",
+    "fit_seconds": 4.01,
+    "test_accuracy": 0.9962,
+    "test_macro_f1": 0.9968,
+    "classifier_latency_ms": 3.84,
+    "labels": [
+      "bicep_curl",
+      "idle",
+      "lunge",
+      "pushup",
+      "shoulder_press",
+      "squat"
+    ],
+    "confusion_matrix": [
+      [
+        106,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        302,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        156,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        134,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        140,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        215
+      ]
+    ],
+    "class_report": {
+      "bicep_curl": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 106.0
+      },
+      "idle": {
+        "precision": 0.9869281045751634,
+        "recall": 1.0,
+        "f1-score": 0.993421052631579,
+        "support": 302.0
+      },
+      "lunge": {
+        "precision": 1.0,
+        "recall": 0.975,
+        "f1-score": 0.9873417721518988,
+        "support": 160.0
+      },
+      "pushup": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 134.0
+      },
+      "shoulder_press": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 140.0
+      },
+      "squat": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 215.0
+      },
+      "accuracy": 0.9962157048249763,
+      "macro avg": {
+        "precision": 0.9978213507625272,
+        "recall": 0.9958333333333332,
+        "f1-score": 0.9967938041305796,
+        "support": 1057.0
+      },
+      "weighted avg": {
+        "precision": 0.996265172735761,
+        "recall": 0.9962157048249763,
+        "f1-score": 0.996204201929083,
+        "support": 1057.0
+      }
+    },
+    "window_counts": {
+      "bicep_curl": 560,
+      "idle": 1115,
+      "lunge": 734,
+      "pushup": 550,
+      "shoulder_press": 628,
+      "squat": 837
+    },
+    "synthetic_data": true
+  },
+  "rep_counting": {
+    "forced": [
+      {
+        "clip": "bicep_curl_asymmetric_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_asymmetric_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_asymmetric_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_body_swing_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "body_swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_body_swing_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "body_swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_body_swing_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "body_swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_fast_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_fast_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_fast_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_good_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_good_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_good_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_partial_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_partial_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_partial_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_swing_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_swing_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "bicep_curl_swing_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_fast_00.npz",
+        "exercise": "lunge",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_fast_01.npz",
+        "exercise": "lunge",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_fast_02.npz",
+        "exercise": "lunge",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_good_00.npz",
+        "exercise": "lunge",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_good_01.npz",
+        "exercise": "lunge",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_good_02.npz",
+        "exercise": "lunge",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_lean_00.npz",
+        "exercise": "lunge",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_lean_01.npz",
+        "exercise": "lunge",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_lean_02.npz",
+        "exercise": "lunge",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_shallow_00.npz",
+        "exercise": "lunge",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_shallow_01.npz",
+        "exercise": "lunge",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "lunge_shallow_02.npz",
+        "exercise": "lunge",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_asymmetric_00.npz",
+        "exercise": "pushup",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_asymmetric_01.npz",
+        "exercise": "pushup",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_asymmetric_02.npz",
+        "exercise": "pushup",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_fast_00.npz",
+        "exercise": "pushup",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 6,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_fast_01.npz",
+        "exercise": "pushup",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_fast_02.npz",
+        "exercise": "pushup",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_flare_00.npz",
+        "exercise": "pushup",
+        "fault": "flare",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_flare_01.npz",
+        "exercise": "pushup",
+        "fault": "flare",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_flare_02.npz",
+        "exercise": "pushup",
+        "fault": "flare",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_good_00.npz",
+        "exercise": "pushup",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_good_01.npz",
+        "exercise": "pushup",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_good_02.npz",
+        "exercise": "pushup",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_partial_00.npz",
+        "exercise": "pushup",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_partial_01.npz",
+        "exercise": "pushup",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_partial_02.npz",
+        "exercise": "pushup",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_sag_00.npz",
+        "exercise": "pushup",
+        "fault": "sag",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_sag_01.npz",
+        "exercise": "pushup",
+        "fault": "sag",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "pushup_sag_02.npz",
+        "exercise": "pushup",
+        "fault": "sag",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_asymmetric_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_asymmetric_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_asymmetric_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_fast_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_fast_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_fast_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_good_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_good_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_good_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_lean_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_lean_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_lean_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_no_lockout_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "no_lockout",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_no_lockout_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "no_lockout",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_no_lockout_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "no_lockout",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_partial_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_partial_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "shoulder_press_partial_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_asymmetric_00.npz",
+        "exercise": "squat",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_asymmetric_01.npz",
+        "exercise": "squat",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_asymmetric_02.npz",
+        "exercise": "squat",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_fast_00.npz",
+        "exercise": "squat",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_fast_01.npz",
+        "exercise": "squat",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_fast_02.npz",
+        "exercise": "squat",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_good_00.npz",
+        "exercise": "squat",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_good_01.npz",
+        "exercise": "squat",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_good_02.npz",
+        "exercise": "squat",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_lean_00.npz",
+        "exercise": "squat",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_lean_01.npz",
+        "exercise": "squat",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_lean_02.npz",
+        "exercise": "squat",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_shallow_00.npz",
+        "exercise": "squat",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_shallow_01.npz",
+        "exercise": "squat",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_shallow_02.npz",
+        "exercise": "squat",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_valgus_00.npz",
+        "exercise": "squat",
+        "fault": "valgus",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_valgus_01.npz",
+        "exercise": "squat",
+        "fault": "valgus",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      },
+      {
+        "clip": "squat_valgus_02.npz",
+        "exercise": "squat",
+        "fault": "valgus",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 1.0
+      }
+    ],
+    "end_to_end": [
+      {
+        "clip": "bicep_curl_asymmetric_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8740554156171285
+      },
+      {
+        "clip": "bicep_curl_asymmetric_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8641975308641975
+      },
+      {
+        "clip": "bicep_curl_asymmetric_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8711340206185567
+      },
+      {
+        "clip": "bicep_curl_body_swing_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "body_swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8785529715762274
+      },
+      {
+        "clip": "bicep_curl_body_swing_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "body_swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8759894459102903
+      },
+      {
+        "clip": "bicep_curl_body_swing_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "body_swing",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8772845953002611
+      },
+      {
+        "clip": "bicep_curl_fast_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8222222222222222
+      },
+      {
+        "clip": "bicep_curl_fast_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8171428571428572
+      },
+      {
+        "clip": "bicep_curl_fast_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8222222222222222
+      },
+      {
+        "clip": "bicep_curl_good_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "good",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8625
+      },
+      {
+        "clip": "bicep_curl_good_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "good",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.867231638418079
+      },
+      {
+        "clip": "bicep_curl_good_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8670694864048338
+      },
+      {
+        "clip": "bicep_curl_partial_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8622589531680441
+      },
+      {
+        "clip": "bicep_curl_partial_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8535825545171339
+      },
+      {
+        "clip": "bicep_curl_partial_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8598726114649682
+      },
+      {
+        "clip": "bicep_curl_swing_00.npz",
+        "exercise": "bicep_curl",
+        "fault": "swing",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8598726114649682
+      },
+      {
+        "clip": "bicep_curl_swing_01.npz",
+        "exercise": "bicep_curl",
+        "fault": "swing",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8670694864048338
+      },
+      {
+        "clip": "bicep_curl_swing_02.npz",
+        "exercise": "bicep_curl",
+        "fault": "swing",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8715846994535519
+      },
+      {
+        "clip": "lunge_fast_00.npz",
+        "exercise": "lunge",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8632478632478633
+      },
+      {
+        "clip": "lunge_fast_01.npz",
+        "exercise": "lunge",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8783269961977186
+      },
+      {
+        "clip": "lunge_fast_02.npz",
+        "exercise": "lunge",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8720538720538721
+      },
+      {
+        "clip": "lunge_good_00.npz",
+        "exercise": "lunge",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9102564102564102
+      },
+      {
+        "clip": "lunge_good_01.npz",
+        "exercise": "lunge",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.903107861060329
+      },
+      {
+        "clip": "lunge_good_02.npz",
+        "exercise": "lunge",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.900990099009901
+      },
+      {
+        "clip": "lunge_lean_00.npz",
+        "exercise": "lunge",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9104
+      },
+      {
+        "clip": "lunge_lean_01.npz",
+        "exercise": "lunge",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9063545150501672
+      },
+      {
+        "clip": "lunge_lean_02.npz",
+        "exercise": "lunge",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8997995991983968
+      },
+      {
+        "clip": "lunge_shallow_00.npz",
+        "exercise": "lunge",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.9074380165289256
+      },
+      {
+        "clip": "lunge_shallow_01.npz",
+        "exercise": "lunge",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.9
+      },
+      {
+        "clip": "lunge_shallow_02.npz",
+        "exercise": "lunge",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.9074380165289256
+      },
+      {
+        "clip": "pushup_asymmetric_00.npz",
+        "exercise": "pushup",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9365853658536586
+      },
+      {
+        "clip": "pushup_asymmetric_01.npz",
+        "exercise": "pushup",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9365853658536586
+      },
+      {
+        "clip": "pushup_asymmetric_02.npz",
+        "exercise": "pushup",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9287671232876712
+      },
+      {
+        "clip": "pushup_fast_00.npz",
+        "exercise": "pushup",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 6,
+        "label_purity": 0.8555555555555555
+      },
+      {
+        "clip": "pushup_fast_01.npz",
+        "exercise": "pushup",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8731707317073171
+      },
+      {
+        "clip": "pushup_fast_02.npz",
+        "exercise": "pushup",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.868020304568528
+      },
+      {
+        "clip": "pushup_flare_00.npz",
+        "exercise": "pushup",
+        "fault": "flare",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9244186046511628
+      },
+      {
+        "clip": "pushup_flare_01.npz",
+        "exercise": "pushup",
+        "fault": "flare",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9402298850574713
+      },
+      {
+        "clip": "pushup_flare_02.npz",
+        "exercise": "pushup",
+        "fault": "flare",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9324675324675324
+      },
+      {
+        "clip": "pushup_good_00.npz",
+        "exercise": "pushup",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9329896907216495
+      },
+      {
+        "clip": "pushup_good_01.npz",
+        "exercise": "pushup",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9269662921348315
+      },
+      {
+        "clip": "pushup_good_02.npz",
+        "exercise": "pushup",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9324675324675324
+      },
+      {
+        "clip": "pushup_partial_00.npz",
+        "exercise": "pushup",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9367396593673966
+      },
+      {
+        "clip": "pushup_partial_01.npz",
+        "exercise": "pushup",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9275766016713092
+      },
+      {
+        "clip": "pushup_partial_02.npz",
+        "exercise": "pushup",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9345088161209067
+      },
+      {
+        "clip": "pushup_sag_00.npz",
+        "exercise": "pushup",
+        "fault": "sag",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9291553133514986
+      },
+      {
+        "clip": "pushup_sag_01.npz",
+        "exercise": "pushup",
+        "fault": "sag",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9345088161209067
+      },
+      {
+        "clip": "pushup_sag_02.npz",
+        "exercise": "pushup",
+        "fault": "sag",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9379474940334129
+      },
+      {
+        "clip": "shoulder_press_asymmetric_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9250720461095101
+      },
+      {
+        "clip": "shoulder_press_asymmetric_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9376498800959233
+      },
+      {
+        "clip": "shoulder_press_asymmetric_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9343434343434344
+      },
+      {
+        "clip": "shoulder_press_fast_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8522727272727273
+      },
+      {
+        "clip": "shoulder_press_fast_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8547486033519553
+      },
+      {
+        "clip": "shoulder_press_fast_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8673469387755102
+      },
+      {
+        "clip": "shoulder_press_good_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9250720461095101
+      },
+      {
+        "clip": "shoulder_press_good_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9322916666666666
+      },
+      {
+        "clip": "shoulder_press_good_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9382422802850356
+      },
+      {
+        "clip": "shoulder_press_lean_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9391100702576113
+      },
+      {
+        "clip": "shoulder_press_lean_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9252873563218391
+      },
+      {
+        "clip": "shoulder_press_lean_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9368932038834952
+      },
+      {
+        "clip": "shoulder_press_no_lockout_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "no_lockout",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8957345971563981
+      },
+      {
+        "clip": "shoulder_press_no_lockout_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "no_lockout",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9393939393939394
+      },
+      {
+        "clip": "shoulder_press_no_lockout_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "no_lockout",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9301075268817204
+      },
+      {
+        "clip": "shoulder_press_partial_00.npz",
+        "exercise": "shoulder_press",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9331619537275064
+      },
+      {
+        "clip": "shoulder_press_partial_01.npz",
+        "exercise": "shoulder_press",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9326424870466321
+      },
+      {
+        "clip": "shoulder_press_partial_02.npz",
+        "exercise": "shoulder_press",
+        "fault": "partial",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9405034324942791
+      },
+      {
+        "clip": "squat_asymmetric_00.npz",
+        "exercise": "squat",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8915401301518439
+      },
+      {
+        "clip": "squat_asymmetric_01.npz",
+        "exercise": "squat",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8994307400379506
+      },
+      {
+        "clip": "squat_asymmetric_02.npz",
+        "exercise": "squat",
+        "fault": "asymmetric",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9029126213592233
+      },
+      {
+        "clip": "squat_fast_00.npz",
+        "exercise": "squat",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.865546218487395
+      },
+      {
+        "clip": "squat_fast_01.npz",
+        "exercise": "squat",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8773946360153256
+      },
+      {
+        "clip": "squat_fast_02.npz",
+        "exercise": "squat",
+        "fault": "fast",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8571428571428571
+      },
+      {
+        "clip": "squat_good_00.npz",
+        "exercise": "squat",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9054820415879017
+      },
+      {
+        "clip": "squat_good_01.npz",
+        "exercise": "squat",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.900749063670412
+      },
+      {
+        "clip": "squat_good_02.npz",
+        "exercise": "squat",
+        "fault": "good",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9011194029850746
+      },
+      {
+        "clip": "squat_lean_00.npz",
+        "exercise": "squat",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8985801217038539
+      },
+      {
+        "clip": "squat_lean_01.npz",
+        "exercise": "squat",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.8983739837398373
+      },
+      {
+        "clip": "squat_lean_02.npz",
+        "exercise": "squat",
+        "fault": "lean",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9045045045045045
+      },
+      {
+        "clip": "squat_shallow_00.npz",
+        "exercise": "squat",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.9038112522686026
+      },
+      {
+        "clip": "squat_shallow_01.npz",
+        "exercise": "squat",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.8954635108481263
+      },
+      {
+        "clip": "squat_shallow_02.npz",
+        "exercise": "squat",
+        "fault": "shallow",
+        "expected": 8,
+        "counted": 7,
+        "label_purity": 0.896484375
+      },
+      {
+        "clip": "squat_valgus_00.npz",
+        "exercise": "squat",
+        "fault": "valgus",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9032846715328468
+      },
+      {
+        "clip": "squat_valgus_01.npz",
+        "exercise": "squat",
+        "fault": "valgus",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9
+      },
+      {
+        "clip": "squat_valgus_02.npz",
+        "exercise": "squat",
+        "fault": "valgus",
+        "expected": 8,
+        "counted": 8,
+        "label_purity": 0.9023941068139963
+      }
+    ]
+  },
+  "mistake_detection": {
+    "ASYMMETRIC_MOVEMENT": {
+      "tp": 12,
+      "fn": 0,
+      "fp": 1,
+      "n_pos_clips": 12,
+      "n_neg_clips": 15,
+      "precision": 0.9230769230769231,
+      "recall": 1.0
+    },
+    "ELBOW_FLARE": {
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 3,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "EXCESSIVE_TORSO_LEAN": {
+      "tp": 6,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 6,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "HIP_SAG": {
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 3,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "INCOMPLETE_LOCKOUT": {
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 3,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "INSUFFICIENT_DEPTH": {
+      "tp": 6,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 6,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "KNEE_ALIGNMENT_POOR": {
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 3,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "PARTIAL_REP": {
+      "tp": 9,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 9,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "SHOULDER_SWING": {
+      "tp": 3,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 3,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "TOO_FAST": {
+      "tp": 15,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 15,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "TORSO_SWING": {
+      "tp": 6,
+      "fn": 0,
+      "fp": 0,
+      "n_pos_clips": 6,
+      "n_neg_clips": 15,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "unknown_fallback": {
+    "arm_swing": {
+      "frames": 858.0,
+      "unknown": 858.0,
+      "clips": 3.0,
+      "generic_reps": 19.0,
+      "unknown_rate": 1.0
+    },
+    "side_bend": {
+      "frames": 1209.0,
+      "unknown": 1209.0,
+      "clips": 3.0,
+      "generic_reps": 23.0,
+      "unknown_rate": 1.0
+    },
+    "star_jump": {
+      "frames": 721.0,
+      "unknown": 721.0,
+      "clips": 3.0,
+      "generic_reps": 18.0,
+      "unknown_rate": 1.0
+    },
+    "toe_touch": {
+      "frames": 1593.0,
+      "unknown": 1593.0,
+      "clips": 3.0,
+      "generic_reps": 22.0,
+      "unknown_rate": 1.0
+    }
+  },
+  "latency": {
+    "frames": 4000.0,
+    "mean_ms": 5.270788300000105,
+    "median_ms": 3.0790499999966414,
+    "p95_ms": 10.96697999986418,
+    "max_ms": 26.622599999882368
+  },
+  "mediapipe": null
+}

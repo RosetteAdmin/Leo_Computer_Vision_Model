@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Generated artefacts. Regenerate with:
+#   python -m tools.generate_synthetic_data
+#   python -m src.train
+#   python -m src.evaluate
+data/
+models/
+*.mp4
+tmp_*
